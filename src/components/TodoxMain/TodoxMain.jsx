@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import { TodosContext } from "../contexts/TodosContext";
+import { TodosContext } from "../../contexts/TodosContext";
 import TodoxInput from "../TodoxInput/TodoxInput";
-import './TodoxMain.css'
+import "./TodoxMain.css";
 const TodoxMain = () => {
   const [todosState, dispatch] = useContext(TodosContext);
   const [editingId, setEditingId] = useState(null);
+
   const noTodosClass = todosState.todos.length === 0 ? "hidden" : "";
 
   const getVisibleTodos = () => {

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { TodosContext } from "../contexts/TodosContext";
-import './TodoxFooter.css'
+import { TodosContext } from "../../contexts/TodosContext";
+import "./TodoxFooter.css";
 const TodoxFooter = () => {
   const [todosState, dispatch] = useContext(TodosContext);
 

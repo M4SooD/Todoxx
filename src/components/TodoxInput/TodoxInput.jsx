@@ -1,9 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { enterCode, escCode } from "../../helpers/keycodes";
-import { TodosContext } from "../contexts/TodosContext";
+
+import { TodosContext } from "../../contexts/TodosContext";
+import useLocalStorage from "../../hooks/useLocalStorage";
 const TodoxInput = ({ todo, isEditing, setEditingId }) => {
   const [, dispatch] = useContext(TodosContext);
   const [editText, setEditText] = useState(todo.text);
+  let todos = [];
+  const [text, setText] = useLocalStorage("todoos", todos);
 
   const editingClass = isEditing ? "editing" : "";
   const completedClass = todo.isCompleted ? "completed" : "";
@@ -48,7 +52,11 @@ const TodoxInput = ({ todo, isEditing, setEditingId }) => {
   });
 
   return (
-    <li className={`${editingClass} ${completedClass}`}>
+    <li
+      value={text}
+      onSubmit={(e) => setText(e.target.value)}
+      className={`${editingClass} ${completedClass}`}
+    >
       <div className="view">
         <input
           className="toggle"

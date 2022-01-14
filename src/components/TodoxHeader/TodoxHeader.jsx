@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { enterCode } from "../../helpers/keycodes";
-import { TodosContext } from "../contexts/TodosContext";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { TodosContext } from "../../contexts/TodosContext";
 import "./TodoxHeader.css";
 const TodoxHeader = () => {
-  const [text, setText] = useState("");
+  const [text, setText] = useLocalStorage("todos", []);
   const [, dispatch] = useContext(TodosContext);
 
   const changeTextHandler = (e) => {
